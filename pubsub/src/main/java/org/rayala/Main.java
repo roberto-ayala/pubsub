@@ -6,6 +6,9 @@ import org.rayala.domain.model.Product;
 import org.rayala.ps.Publisher;
 import org.rayala.ps.Subscriber;
 
+import lombok.extern.java.Log;
+
+@Log
 public class Main {
     public static void main(String[] args) {
         
@@ -19,10 +22,11 @@ public class Main {
             .build();
 
         // Iniciar el suscriptor
+
         Subscriber<Product> subscriber = new Subscriber<>(Product.class);
         subscriber.subscribe(channel, Arrays.asList(
             (Product data) -> {
-                System.out.println(String.format("handler for channel: %s with data: %s", channel, data));
+                log.info(String.format("handler for channel: %s with data: %s", channel, data));
             }
         ));
 
